@@ -1,16 +1,12 @@
 import os
 import discord
-from discord.ext import commands, tasks
-from discord_slash import SlashCommand, SlashContext, cog_ext, manage_commands
-from discord_components import DiscordComponents, Button, ButtonStyle, Select, SelectOption, Interaction
-from discord.ext.menus import Menu, MenuPages, ButtonMenuPages, ListPageSource, GroupByPageSource
-from supabase import create_client, Client, Storage
+from discord.ext import commands
+from discord_slash import SlashCommand, SlashContext
+from discord_components import DiscordComponents, Button, ButtonStyle, Interaction
+from supabase import create_client, Client
 import gspread
-from gspread import Client as GSpreadClient, Spreadsheet, Worksheet
 from oauth2client.service_account import ServiceAccountCredentials
-from oauth2client import OAuth2Credentials
-from dotenv import load_dotenv, find_dotenv
-import requests
+from dotenv import load_dotenv
 import random
 
 # Load environment variables
@@ -37,17 +33,16 @@ gspread_client: GSpreadClient = gspread.authorize(creds)
 async def dice(ctx):
     random_dice1 = random.randint(1, 100)
     if random_dice1 > 95:
-      print(f"{random_dice1}! ファンブル！")
+        await ctx.send(f"{random_dice1}! ファンブル！")
     elif random_dice1 < 5:
-      print(f"{random_dice1}! クリティカル！")
+        await ctx.send(f"{random_dice1}! クリティカル！")
     else:
-      print(f"{random_dice1}")
+        await ctx.send(f"{random_dice1}")
 
 
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user}')
-
 
 
 token = os.getenv('DISCORD_TOKEN')
