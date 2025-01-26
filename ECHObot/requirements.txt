@@ -1,0 +1,9 @@
+discord.py
+supabase-py
+discord-py-slash-command
+discord-ext-menus
+discord-components
+gspread
+oauth2client
+requests
+python-dotenv

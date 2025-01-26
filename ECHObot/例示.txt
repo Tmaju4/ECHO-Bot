@@ -1,0 +1,56 @@
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user}')
+
+# Basic command example
+@bot.command()
+async def ping(ctx):
+    await ctx.send('Pong!')
+
+# Slash command example
+@slash.slash(name="hello", description="Say hello")
+async def _hello(ctx: SlashContext):
+    await ctx.send(content="Hello from slash command!")
+
+# Save message to Supabase
+@bot.command()
+async def save_message(ctx, *, content: str):
+    response = supabase.table('messages').insert({'content': content, 'timestamp': 'now()'}).execute()
+    if response.status_code == 201:
+        await ctx.send('Message saved successfully!')
+    else:
+        await ctx.send('Failed to save message.')
+
+# Get data from Google Sheets
+@bot.command()
+async def get_sheet_data(ctx, sheet_name: str):
+    sheet = gspread_client.open(sheet_name).sheet1
+    data = sheet.get_all_records()
+    await ctx.send(f'Sheet data: {data}')
+
+# Fetch data from a URL
+@bot.command()
+async def fetch_url(ctx, url: str):
+    response = requests.get(url)
+    if response.status_code == 200:
+        await ctx.send(f'Fetched data: {response.text[:200]}...')  # Display first 200 characters
+    else:
+        await ctx.send('Failed to fetch data.')
+
+# Send a message with a button
+@bot.command()
+async def button(ctx):
+    await ctx.send(
+        "Click the button!",
+        components=[
+            Button(style=ButtonStyle.blue, label="Click me!")
+        ]
+    )
+
+@bot.event
+async def on_button_click(interaction):
+    await interaction.respond(content="Button clicked!")
+
+if __name__ == "__main__":
+    token = os.getenv('DISCORD_TOKEN')
+    bot.run(token)
