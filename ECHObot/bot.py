@@ -11,6 +11,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from oauth2client import OAuth2Credentials
 from dotenv import load_dotenv, find_dotenv
 import requests
+import random
 
 # Load environment variables
 load_dotenv()
@@ -31,3 +32,23 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name('path/to/your/service_account.json', scope)
 gspread_client: GSpreadClient = gspread.authorize(creds)
+
+@bot.command()
+async def dice(ctx):
+    random_dice1 = random.randint(1, 100)
+    if random_dice1 > 95:
+      print(f"{random_dice1}! ファンブル！")
+    elif random_dice1 < 5:
+      print(f"{random_dice1}! クリティカル！")
+    else:
+      print(f"{random_dice1}")
+
+
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user}')
+
+
+
+token = os.getenv('DISCORD_TOKEN')
+bot.run(token)
