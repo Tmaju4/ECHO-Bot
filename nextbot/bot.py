@@ -31,7 +31,6 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 creds = ServiceAccountCredentials.from_json_keyfile_name('path/to/your/service_account.json', scope)
 gspread_client: GSpreadClient = gspread.authorize(creds)
 
-# ボットが起動したときのメッセージ
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
