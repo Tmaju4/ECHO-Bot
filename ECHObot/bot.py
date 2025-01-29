@@ -1,7 +1,6 @@
 import os
 import discord
 from discord.ext import commands
-from discord_slash import SlashCommand, SlashContext
 from discord_components import DiscordComponents, Button, ButtonStyle
 from discord.ext import menus
 from supabase import create_client, Client
