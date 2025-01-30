@@ -22,6 +22,9 @@ jobs:
       run: |
         cd ECHObot
         python -m pip install --upgrade pip
+        pip install httpx==0.16.1
+        pip install websockets==9.1
+        pip install gotrue==0.2.0
         pip install -r requirements.txt
 
     - name: Run the bot1
@@ -49,6 +52,9 @@ jobs:
       run: |
         cd nextbot
         python -m pip install --upgrade pip
+        pip install httpx==0.16.1
+        pip install websockets==9.1
+        pip install gotrue==0.2.0
         pip install -r requirements.txt
 
     - name: Run the bot2

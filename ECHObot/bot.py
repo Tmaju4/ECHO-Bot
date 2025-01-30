@@ -2,7 +2,7 @@ import os
 import discord
 from discord.ext import commands
 from discord.ext import menus
-from supabase import create_client, Client
+import supabase
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import requests
