@@ -16,7 +16,6 @@ load_dotenv()
 # Discord bot setup
 intents = discord.Intents.all()  # すべてのインテンツを有効にする
 bot = commands.Bot(command_prefix="!", intents=intents)
-slash = SlashCommand(bot, sync_commands=True)
 DiscordComponents(bot)
 
 # Supabase setup
