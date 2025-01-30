@@ -2,14 +2,13 @@ import os
 import discord
 from discord.ext import commands
 from discord.ext import menus
-from discord_components import DiscordComponents, Button, ButtonStyle
 from supabase import create_client, Client
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import requests
 from dotenv import load_dotenv
 import random
-from discord_components import DiscordComponents, Button, ButtonStyle
+
 
 # Load environment variables
 load_dotenv()
@@ -17,7 +16,6 @@ load_dotenv()
 # Discord bot setup
 intents = discord.Intents.all()  # すべてのインテンツを有効にする
 bot = commands.Bot(command_prefix="!", intents=intents)
-DiscordComponents(bot)
 
 # Supabase setup
 supabase_url = os.getenv('SUPABASE_URL')
